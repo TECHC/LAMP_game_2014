@@ -35,7 +35,7 @@ public function set($tpl_var, $value = null)
   //
   parent::assign($this->_esc($tpl_var), $this->_esc($value));
 }
-public function assign($tpl_var, $value = null)
+public function assign($tpl_var, $value = null, $nocache = false)
 {
   $this->set($tpl_var, $value);
 }
