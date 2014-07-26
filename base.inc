@@ -33,3 +33,20 @@ $smarty = new mw_smarty();
 $smarty->setTemplateDir($base_path . 'smarty_wk/templates/');
 $smarty->setCompileDir($base_path . 'smarty_wk/templates_c/');
 
+// 共通関数。あとで別ファイルに切り出す
+
+// コインを得る処理
+function get_coin($coin_num) {
+  //
+  $_COOKIE['coin'] += $coin_num;
+  setcookie('coin', $_COOKIE['coin'], 0, '/');
+}
+
+// コインを失う処理
+function lose_coin($coin_num) {
+  //
+  $_COOKIE['coin'] -= $coin_num;
+  setcookie('coin', $_COOKIE['coin'], 0, '/');
+}
+
+
