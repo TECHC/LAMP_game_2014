@@ -8,6 +8,7 @@
 
 <ul>
   <li><a href="./test_game.php">テストゲーム</a>
+  <li><a href="./poker/poker.php">ポーカー</a>
 </ul>
 
 </body>
