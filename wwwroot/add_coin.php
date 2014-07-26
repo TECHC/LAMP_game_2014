@@ -14,8 +14,8 @@ if ('' === $name) {
 
 // Cookieに値を設定
 // XXX 二重に呼ばれた可能性、などのチェックは一端オミット
-setcookie('name', $name);
-setcookie('coin', 10);
+setcookie('name', $name, 0, '/');
+setcookie('coin', 10, 0, '/');
 
 //
 header('Location: ./top.php');

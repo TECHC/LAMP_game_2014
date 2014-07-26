@@ -29,7 +29,7 @@ if(isset($_SESSION['poker']) === false)
 	{
 		// 5枚以上ならば賭ける
 		$_COOKIE['coin'] -= 5;
-		setcookie('coin',$_COOKIE['coin'],0);
+		setcookie('coin',$_COOKIE['coin'],0, '/');
 	}
 
 	// 出力処理
