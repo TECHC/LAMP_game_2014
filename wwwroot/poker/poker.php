@@ -11,10 +11,7 @@ require_once("Status.php");
 
 $coin_check_omit = true;
 require_once('../../base.inc');
-
 // --------------------------------------------------------
-
-unset($_SESSION);
 
 // セッションに保存されていなかったら初期化処理を走らせる
 if(isset($_SESSION['poker']) === false)
@@ -102,6 +99,20 @@ if(isset($_SESSION['poker']) === false)
 	$poker->setComAI($comAI);
 	$poker->setStatus($statusList);
 	$poker->setNowCoin(5);
+	
+	// 画面描画
+	$playerHand = array 
+	(
+		"1" => array("suji" => $handList[0][0]->getSuji(),
+		"suit" => $handList[0][0]->getSuit(),),
+
+		"2" => array("suji" => $handList[0][1]->getSuji(),
+		"suit" => $handList[0][1]->getSuit(),)
+	);
+
+	$smarty->assign("player_card",$playerHand);
+
+	$smarty->assign("player_init",true);
 
 	// セッションに保存したゲーム情報を入れる
 	$_SESSION['poker'] = serialize($poker);
@@ -111,3 +122,12 @@ if(isset($_SESSION['poker']) === false)
 	require_once('../../fin.inc');
 	return ;
 }
+
+// 初期処理以外
+
+// 行動を取り出す
+$mode = $_POST['mode'];
+
+var_dump($mode);
+
+unset($_SESSION['poker']);

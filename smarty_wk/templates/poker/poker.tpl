@@ -62,10 +62,12 @@ function endCheck()
 }
 
 .card {
-	width: 140px;
-	height: 200px;
+	width: 110px;
+	height: 170px;
 	/*float: right;*/
 	margin: 5px;
+
+	border: solid 1px;
 	
 	background: url(../images/back.png);
 	background-size: contain;
@@ -86,7 +88,7 @@ function endCheck()
 <!-- フィールド（共通して使えるカード）の表示 -->
 <div class="">
 	{foreach from=$field_card item=i}
-		<div class="card" style="background:url(../images/{$i.suzi}{$i.suit}.png)"></div>
+		<div class="card" style="background:url(../imgs/{$i.suit}_{$i.suji}.png)"></div>
 	{/foreach}
 </div>
 <!-- ここまで -->
@@ -94,14 +96,16 @@ function endCheck()
 <!-- プレイヤーのカードを表示 -->
 <div calss="">
 	{foreach from=$player_card item=i}
-		<div class="card" style="background:url(../images/{$i.suzi}{$i.suit}.png)"></div>
+		<div class="card" style="background:url(../imgs/{$i.suit}_{$i.suji}.png)"></div>
 	{/foreach}
 </div>
 <!-- ここまで -->
 
 <!-- プレイヤーの行動表示 -->
 <div class="">
-	<p>{$player_info}</p>
+	{if $player_init}
+		<p>下から行動を選んでください</p>
+	{/if}
 </div>
 <!-- ここまで -->
 
