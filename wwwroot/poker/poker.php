@@ -4,7 +4,6 @@ session_start();
 
 require_once("Define.php");
 require_once("Trump.php");
-require_once("Hand.php");
 require_once("game_manager.php");
 require_once("ai.php");
 require_once("ai1.php");
@@ -31,10 +30,13 @@ if(isset($_SESSION['poker']) === false)
 		lose_coin(5);
 	}
 
-	
-	
+	// カードとか用意
+
+
 	// 出力処理
 	$template_name = 'poker/poker.tpl';
 	require_once('../../fin.inc');
 	return ;
 }
+
+var_dump($_SESSION);
