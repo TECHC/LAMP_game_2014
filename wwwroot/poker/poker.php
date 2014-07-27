@@ -127,7 +127,25 @@ if(isset($_SESSION['poker']) === false)
 
 // 行動を取り出す
 $mode = $_POST['mode'];
+if($mode == "コール・チェック")
+{
 
-var_dump($mode);
+}
+
+else if($mode == "ベット")
+{
+	// ベットコイン抜き出し
+	$addCoin = $_POST['coin'];
+}
+
+else if($mode == "オールイン")
+{
+
+}
+
+else if($mode == "フォールド")
+{
+
+}
 
 unset($_SESSION['poker']);
