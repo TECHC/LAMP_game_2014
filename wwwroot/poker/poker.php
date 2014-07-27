@@ -28,11 +28,13 @@ if(isset($_SESSION['poker']) === false)
 	else
 	{
 		// 5枚以上ならば賭ける
-		$_COOKIE['coin'] -= 5;
-		setcookie('coin',$_COOKIE['coin'],0, '/');
+		lose_coin(5);
 	}
 
+	
+	
 	// 出力処理
 	$template_name = 'poker/poker.tpl';
 	require_once('../../fin.inc');
+	return ;
 }

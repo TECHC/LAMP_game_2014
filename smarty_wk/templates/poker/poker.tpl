@@ -1,12 +1,13 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="ja-JP">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ポーカー</title>
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.10.3/build/cssreset/cssreset-min.css"]] >
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<meta charset="UTF-8">
+	<title>ポーカー</title>
+	
 <script>
 
-// どっかに書き出してもいいけどとりあえず
 // 「終了」を押した場合のクッション
 function endCheck()
 {
@@ -18,139 +19,157 @@ function endCheck()
 
 </script>
 
-<!-- 仮 -->
 <style type="text/css">
-	.card {
-	width: 110px;
-	height: 170px;
-	/*float: left;*/
-	margin: 5px;
+/*** COMMON ***/
+.clear {
+	clear: both;
+}
 
-	/* カードの枠が無いのでとりあえず */
-	border: solid 1px;
+/*** GAME.CSS ***/
+.wrap {
+	margin: 0 auto;
+	width: 1000px;
+	height: 800px;
 	
-	background: url(../imgs/back.png);
+	position: relative;
+	
+	background: #00ff1f;
+	background: url(../wwwroot/images/table_bg.png);
+	background-repeat: no-repeat;
+	background-size: contain:
+}
+.hand {
+	display: table;
+	margin: 0 auto;
+	box-sizing: border-box;
+	
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	
+	
+	border-radius: 10px;
+}
+.enemy_hand {
+	top: 10%;
+	
+	background: #ffb0b0;
+}
+.my_hand {
+	bottom: 10%;
+	
+	background: #bbf5ff;
+}
+
+.card {
+	width: 140px;
+	height: 200px;
+	float: right;
+	margin: 5px;
+	
+	background: url(../wwwroot/images/back.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-</style>
 
+</style>
 </head>
+
 <body>
 
-<p>フィールドのカード</p>
-<!-- 共有して使えるカード（最大5枚） -->
+<!-- フィールド（共通して使えるカード）の表示 -->
 <div class="">
-	{$field_card}
+	{foreach from=$field_card item=i}
+		<div class="card" style="background:url(../images/{$i.suzi}{$i.suit}.png)"></div>
+	{/foreach}
 </div>
+<!-- ここまで -->
 
-<!-- プレイヤーの必要情報 -->
-<p>{$name}さんの手札</p>
+<!-- プレイヤーのカードを表示 -->
+<div calss="">
+	{foreach from=$player_card item=i}
+		<div class="card" style="background:url(../images/{$i.suzi}{$i.suit}.png)"></div>
+	{/foreach}
+</div>
+<!-- ここまで -->
 
-<!-- [コールしました]などの情報を乗せようかなと -->
+<!-- プレイヤーの行動表示 -->
 <div class="">
 	<p>{$player_info}</p>
 </div>
-
-<div class="">
-{foreach from=$player_card item=i}
-    <div class="card" style="background:url(.img/{$i.suit}_{$i.card}.png)"></div>
-{/foreach}
-</div>
-
-<p>どうしますか？</p>
-
-<form action="poker_now.php" method="POST" />
-	<input type='submit' value='コール・チェック' name='mode' />
-	<input type='submit' value='ベット' name='mode' /><input type='text' value='10' name='coin' size="3" maxlength="3"/>
-	<input type='submit' value='オールイン' name='mode' />
-	<input type='submit' value='フォールド' name='mode' />
-<input type='submit' value='終了' name='mode' onclick='return endCheck();' />
-</form>
-
-<!-- プレイヤーここまで -->
-<HR >
-
-<p>相手のカード</p>
-
-<!-- 相手の選んだ行動を表示 -->
-<div class="">
-	{$com_1_info}
-</div>
-
-<!-- 相手の様子を表示(色で表情をあれあれするっていうやつ) -->
-<div class="">
-	{$com_1_status}
-</div>
-
-<!-- 相手のカードを表示 -->
-<div class="">
-	<div class="card"></div>
-	<div class="card"></div>
-</div>
-
-<HR >
-
-<div class="">
-	{$com_2_info}
-</div>
-
-<div class="">
-	{$com_1_status}
-</div>
-
-<div class="">
-	<div class="card"></div>
-	<div class="card"></div>
-</div>
-
-<HR >
-
-<div class="">
-	{$com_3_info}
-</div>
-
-<div class="">
-	{$com_1_status}
-</div>
-
-<div class="">
-	<div class="card"></div>
-	<div class="card"></div>
-</div>
-
-<HR >
-
-<div class="">
-	{$com_4_info}
-</div>
-
-<div class="">
-	{$com_1_status}
-</div>
-
-<div class="">
-	<div class="card"></div>
-	<div class="card"></div>
-</div>
-
-<HR >
-
-<div class="">
-	{$com_5_info}
-</div>
-
-<div class="">
-	{$com_1_status}
-</div>
-
-<div class="">
-	<div class="card"></div>
-	<div class="card"></div>
-</div>
-
 <!-- ここまで -->
-<HR >
+
+<!-- プレイヤーの選択肢（コール、ベット…）を表示 -->
+<div class="">
+	<form action="poker.php" method="POST" />
+		<input type="submit" value="コール・チェック" name="mode" />
+		<input type="submit" value="ベット" name="mode" />
+		<input type="text" value="10" name="coin" size="3" maxlength="3"/>
+		<input type="submit" value="オールイン" name="mode" />
+		<input type="submit" value="フォールド"name="mode" />
+		<input type="submit" value="終了" name="mode" onclick="return endCheck();" />
+	</form>
+</div>
+<!-- ここまで -->
+
+<!-- 相手の手札を表示 -->
+<div class="">
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+<!-- ここまで -->
+
+<!-- 相手の行動表示 -->
+<div class="">
+	<p>{$com1_info}</p>
+</div>
+<!-- ここまで -->
+
+<!-- 上記処理をあと4回やる -->
+
+<div class="">
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+
+<div class="">
+	<p>{$com2_info}</p>
+</div>
+
+<!-- ============== -->
+
+<div class="">
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+
+<div class="">
+	<p>{$com3_info}</p>
+</div>
+
+<!-- ============== -->
+
+<div class="">
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+
+<div class="">
+	<p>{$com4_info}</p>
+</div>
+
+<!-- ============== -->
+
+<div class="">
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+
+<div class="">
+	<p>{$com5_info}</p>
+</div>
+
+<!-- ============== -->
 
 </body>
 </html>
