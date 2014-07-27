@@ -6,7 +6,7 @@ class Trump
 	// カードの数字
 	private $suji;
 
-	public function __constract($suit, $suji)
+	public function __construct($suit, $suji)
 	{
 		$this->suit = $suit;
 		$this->suji = $suji;

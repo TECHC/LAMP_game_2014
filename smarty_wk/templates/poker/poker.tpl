@@ -64,12 +64,18 @@ function endCheck()
 .card {
 	width: 140px;
 	height: 200px;
-	float: right;
+	/*float: right;*/
 	margin: 5px;
 	
-	background: url(../wwwroot/images/back.png);
+	background: url(../images/back.png);
 	background-size: contain;
 	background-repeat: no-repeat;
+}
+
+/*** 相手の表情パラメータ(仮) ***/
+.bar {
+	width: 150px;
+	height: 15px;
 }
 
 </style>
@@ -125,6 +131,12 @@ function endCheck()
 </div>
 <!-- ここまで -->
 
+<!-- 相手のステータス -->
+<div class="">
+	<div class="bar" style="background-color:#000000">
+</div>
+<!-- ここまで-->
+
 <!-- 上記処理をあと4回やる -->
 
 <div class="">
@@ -134,6 +146,10 @@ function endCheck()
 
 <div class="">
 	<p>{$com2_info}</p>
+</div>
+
+<div class="">
+	<div class="bar" style="background-color:#000000">
 </div>
 
 <!-- ============== -->
@@ -147,6 +163,10 @@ function endCheck()
 	<p>{$com3_info}</p>
 </div>
 
+<div class="">
+	<div class="bar" style="background-color:#000000">
+</div>
+
 <!-- ============== -->
 
 <div class="">
@@ -158,6 +178,10 @@ function endCheck()
 	<p>{$com4_info}</p>
 </div>
 
+<div class="">
+	<div class="bar" style="background-color:#000000">
+</div>
+
 <!-- ============== -->
 
 <div class="">
@@ -167,6 +191,10 @@ function endCheck()
 
 <div class="">
 	<p>{$com5_info}</p>
+</div>
+
+<div class="">
+	<div class="bar" style="background-color:#000000">
 </div>
 
 <!-- ============== -->
