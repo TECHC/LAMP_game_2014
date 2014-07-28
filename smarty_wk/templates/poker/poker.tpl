@@ -93,6 +93,16 @@ function endCheck()
 </div>
 <!-- ここまで -->
 
+<!-- ゲームの状態を表示 -->
+<div class="">
+	<!-- {$coin}には0 ~ 999の文字 -->
+	<div class="">現在の掛け金 : {$coin}</div>
+	{foreach from=$now_coin item=i}
+		<div class="">{$i.name}さんの持ち金 : {$i.coin}</div>
+	{/foreach}
+</div>
+<!-- ここまで -->
+
 <!-- プレイヤーのカードを表示 -->
 <div calss="">
 	{foreach from=$player_card item=i}
@@ -105,6 +115,23 @@ function endCheck()
 <div class="">
 	{if $player_init}
 		<p>下から行動を選んでください</p>
+	{/if}
+
+	{if $player_call}
+		<p>コールしました</p>
+	{/if}
+
+	{if $player_bet}
+	    <!-- {$player_coin}には0 ~ 999の文字 -->
+		<p>{$player_coin}コインベットしました</p>
+	{/if}
+
+	{if $player_fold}
+		<p>フォールドしました</p>
+	{/if}
+
+	{if $player_allin}
+		<p>オールイン！</p>
 	{/if}
 </div>
 <!-- ここまで -->

@@ -10,3 +10,5 @@
 	define('FIELD_CARD',5); // フィールドに出る最大のカード
 	define('MAX_PLAYER',6); // プレイヤーの数
 	define('MAX_HAND',2);   // 最大手札
+
+	define('LATCH',5); // 初期掛け金

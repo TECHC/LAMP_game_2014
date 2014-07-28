@@ -7,7 +7,7 @@ class Status
 	// 現在のコイン数
 	private $coin = 10;
 	// 現在賭けている金額
-	private $nowCoin = 5;
+	private $nowCoin = 0;
 	// 名前
 	private $name;
 
@@ -51,7 +51,7 @@ class Status
 	}
 
 	/**
-	 * 現在の山札を返します
+	 * 現在のかけている金額を返します
 	 */
 	public function getNowCoin()
 	{
@@ -95,7 +95,7 @@ class Status
 	}
 
 	// --------------------------------------------------------
-	
+
 	/**
 	 * オールインかフォールドをしていたらtrueを返す
 	 * @return {Boolean} していたらture
@@ -115,6 +115,23 @@ class Status
 	public function getName()
 	{
 		return $this->name;
+	}
+
+	// --------------------------------------------------------
+
+	/**
+	 * 現在のコインが足りていたら賭ける
+	 * @param {int} coin 賭けるコインの数
+	 * @return {Boolean} 賭けられたらtrue
+	 */
+	public function latch($coin)
+	{
+		if($coin < $this->coin)
+		{
+			$this->coin -= $coin;
+			return true;
+		}
+		return false;
 	}
 
 	// --------------------------------------------------------
@@ -140,10 +157,40 @@ class Status
 		else
 		{
 			// オールインする
-			$coin = 0;
+			$this->nowCoin = $this->coin;
+			$this->coin = 0;
 			$this->allInFlag = true;
-
 			return false;
 		}
+	}
+
+	public function bet($addCoin)
+	{
+		// コインが足りているか
+		if($addCoin < $this->coin)
+		{
+			// 足りていたら減らす
+			$this->coin -= $addCoin;
+			$this->nowCoin += $addCoin;
+
+			return $this->nowCoin;
+		}
+		// 足りない
+		else
+		{
+			// オールインする
+			$this->nowCoin = $this->coin;
+			$this->coin = 0;
+			$this->allInFlag = true;
+			return $this->nowCoin;
+		}
+	}
+
+	public function allIn()
+	{
+		// オールインする
+		$this->nowCoin = $this->coin;
+		$this->coin = 0;
+		$this->allInFlag = true;
 	}
 }
