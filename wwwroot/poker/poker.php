@@ -90,7 +90,6 @@ if(isset($_SESSION['poker']) === false)
 	// AIタイプを設定(-1するのはプレイヤー（AIではない）がいるため)
 	for($i = 0; $i < (MAX_PLAYER - 1); $i++)
 	{
-		// AIタイプは0~2タイプあるのでランダムに決めてクラスを作成
 		$comAI[$i] = new AI1();
 	}
 
@@ -161,8 +160,10 @@ $handList = $poker->getHand();
 $comAI = $poker->getComAI();
 $statusList = $poker->getStatus();
 $nowCoin = $poker->getNowCoin();
+$turn = $poker->getGameTurn();
 
 // 行動を取り出す
+
 $mode = @$_POST['mode'];
 if($mode == "コール・チェック")
 {
@@ -188,6 +189,7 @@ else if($mode == "オールイン")
 else if($mode == "フォールド")
 {
 	unset($_SESSION['poker']);
+	setcookie('coin', $statusList[0]->getCoin(), 0, '/');
 	header('Location: ./poker.php');
 	return ;
 }
@@ -195,9 +197,42 @@ else if($mode == "フォールド")
 else if($mode == "終了")
 {
 	unset($_SESSION['poker']);
+	setcookie('coin', $statusList[0]->getCoin(), 0, '/');
 	header('Location: ../top.php');
 	return ;
 }
+
+// 敵の処理
+for($i = 1; $i <= (MAX_PLAYER - 1); $i++)
+{
+	// AI処理を開始して行動を決める
+	$mode = $comAI[($i - 1)]->check();
+	// コール
+	if($mode == 0)
+	{
+		$statusList[$i]->call($nowCoin);
+	}
+
+	// ベット
+	else if($mode == 1)
+	{
+
+	}
+
+	// オールイン
+	else if($mode == 2)
+	{
+
+	}
+
+	// フォールド
+	else if($mode == 3)
+	{
+
+	}
+}
+
+
 
 
 // 描画（描画関数作れば良いんだけれど）
@@ -251,8 +286,6 @@ $_SESSION['poker'] = serialize($poker);
 // 出力処理
 $template_name = 'poker/poker.tpl';
 require_once('../../fin.inc');
-
-
 
 //unset($_SESSION['poker']);
 

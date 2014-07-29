@@ -11,6 +11,6 @@ class AI1 extends AI
 	 */
 	public function check()
 	{
-		//var_dump($this->fieldCard);
+		return 0;
 	}
 }
