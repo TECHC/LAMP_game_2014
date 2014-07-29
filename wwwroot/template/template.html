@@ -1,20 +1,20 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.10.3/build/cssreset/cssreset-min.css"]] >
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<meta charset="UTF-8">
-<title></title>
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.10.3/build/cssreset/cssreset-min.css"]] >
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<meta charset="UTF-8">
+	<title></title>
 <script type="text/javascript">
 $(document).ready(function(){
-$("#eHand_add").click(function(){
-$("#eHand").append("<div class='card'></div>")
-});
-$("#mHand_add").click(function(){
-// ここを変えれば画像が変わる
-var tmpImg = "1dia";
-$("#mHand").append("<div class='card' style='background: url(../wwwroot/images/"+ tmpImg +".png)'></div>");
-});
+	$("#eHand_add").click(function(){
+		$("#eHand").append("<div class='card'></div>")
+	});
+	$("#mHand_add").click(function(){
+		// ここを変えれば画像が変わる
+		var tmpImg = "1dia";
+		$("#mHand").append("<div class='card' style='background: url(../wwwroot/images/"+ tmpImg +".png)'></div>");
+	});
 });
 
 </script>
@@ -22,110 +22,110 @@ $("#mHand").append("<div class='card' style='background: url(../wwwroot/images/"
 <style type="text/css">
 /*** COMMON ***/
 .clear {
-clear: both;
+	clear: both;
 }
 
 
 
 /*** GAME.CSS ***/
 .wrap {
-margin: 0 auto;
-width: 1000px;
-height: 800px;
+	margin: 0 auto;
+	width: 1000px;
+	height: 800px;
 
-position: relative;
+	position: relative;
 
-background: #00ff1f;
-background: url(../wwwroot/images/table_bg.png);
-background-repeat: no-repeat;
-background-size: contain:
+	background: #00ff1f;
+	background: url(../wwwroot/images/table_bg.png);
+	background-repeat: no-repeat;
+	background-size: contain:
 }
 .hand {
-display: table;
-margin: 0 auto;
-box-sizing: border-box;
+	display: table;
+	margin: 0 auto;
+	box-sizing: border-box;
 
-position: absolute;
-left: 50%;
--webkit-transform: translateX(-50%);
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
 
 
-border-radius: 10px;
+	border-radius: 10px;
 }
 .enemy_hand {
-top: 10%;
+	top: 10%;
 
-background: #ffb0b0;
+	background: #ffb0b0;
 }
 .my_hand {
-bottom: 10%;
+	bottom: 10%;
 
-background: #bbf5ff;
+	background: #bbf5ff;
 }
 
 .card {
-width: 140px;
-height: 200px;
-float: right;
-margin: 5px;
+	width: 140px;
+	height: 200px;
+	float: right;
+	margin: 5px;
 
-background: url(../wwwroot/images/back.png);
-background-size: contain;
-background-repeat: no-repeat;
+	background: url(../wwwroot/images/back.png);
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 
 
 /* おまけ */
 .name {
-width: 200px;
-height: 35px;
-position: absolute;
+	width: 200px;
+	height: 35px;
+	position: absolute;
 
-text-align: center;
+	text-align: center;
 
-color: white;
-font-size: 24px;
-font-weight: bold;
-text-shadow: 0px 0px 2px black;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px black;
 }
 .enemy_name {
-top:0;
-right: 0;
+	top:0;
+	right: 0;
 
-background: #ffb0b0;
+	background: #ffb0b0;
 }
 .my_name {
-bottom: 0;
-left: 0;
+	bottom: 0;
+	left: 0;
 
-background: #bbf5ff;
+	background: #bbf5ff;
 }
 
 .btn_add {
-margin: 20px;
-width: 150px;
-height: 150px;
-position: fixed;
-bottom: 0;
+	margin: 20px;
+	width: 150px;
+	height: 150px;
+	position: fixed;
+	bottom: 0;
 
-color: white;
-font-size: 24px;
-font-weight: bold;
-text-shadow: 0px 0px 2px black;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px black;
 
-border: none;
-border-radius: 100px;
+	border: none;
+	border-radius: 100px;
 }
 .eHand_add {
-right: 170px;
+	right: 170px;
 
-background: #ffb0b0;
+	background: #ffb0b0;
 }
 .mHand_add {
-right: 0px;
+	right: 0px;
 
-background: #bbf5ff;
+	background: #bbf5ff;
 }
 
 
@@ -134,17 +134,17 @@ background: #bbf5ff;
 </head>
 <body>
 <div class="wrap">
-<div id="eHand" class="hand enemy_hand">
-</div>
+	<div id="eHand" class="hand enemy_hand">
+	</div>
 
-<div id="mHand" class="hand my_hand">
-</div>
+	<div id="mHand" class="hand my_hand">
+	</div>
 
-<!-- おまけ -->
-<div class="name enemy_name">ENEMY</div>
-<div class="name my_name">ME</div>
-<button id="eHand_add" class="btn_add eHand_add">カード追加（敵）</button>
-<button id="mHand_add" class="btn_add mHand_add">カード追加（自）</button>
+	<!-- おまけ -->
+	<div class="name enemy_name">ENEMY</div>
+	<div class="name my_name">ME</div>
+	<button id="eHand_add" class="btn_add eHand_add">カード追加（敵）</button>
+	<button id="mHand_add" class="btn_add mHand_add">カード追加（自）</button>
 
 </div><!-- .wrap -->
 </body>

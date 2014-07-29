@@ -101,12 +101,12 @@ if(isset($_SESSION['poker']) === false)
 					 "suit" => $handList[0][0]->getSuit(),),
 
 		"2" => array("suji" => $handList[0][1]->getSuji(),
-		"suit" => $handList[0][1]->getSuit(),)
+					 "suit" => $handList[0][1]->getSuit(),)
 	);
 
 	$smarty->assign("player_card",$playerHand);
 	$smarty->assign("player_init",true);
-	$smarty->assign("coin",LATCH);
+	$smarty->assign("now_coin",LATCH);
 	
 	$now_coin = array
 	(
@@ -130,13 +130,14 @@ if(isset($_SESSION['poker']) === false)
 			
 	);
 
-	$smarty->assign("now_coin",$now_coin);
+	$smarty->assign("coins",$now_coin);
 
 
 	// すべてのデータをゲームデータ保存クラスに入れる
 
 	$poker = new GameManager();
 
+	$poker->setFieldCard([]);
 	$poker->setTrump($trump);
 	$poker->setHand($handList);
 	$poker->setComAI($comAI);
@@ -155,6 +156,7 @@ if(isset($_SESSION['poker']) === false)
 // 初期処理以外
 // セッションから取り出し
 $poker = unserialize($_SESSION['poker']);
+$fieldCard = $poker->getFieldCard();
 $trump = $poker->getTrump();
 $handList = $poker->getHand();
 $comAI = $poker->getComAI();
@@ -169,6 +171,7 @@ if($mode == "コール・チェック")
 {
 	// コールの場合は現在の掛け金に自分の掛け金を合わせる
 	$statusList[0]->call($nowCoin);
+	$smarty->assign("player_call",true);
 }
 
 else if($mode == "ベット")
@@ -178,7 +181,7 @@ else if($mode == "ベット")
 	$nowCoin = $statusList[0]->bet($addCoin); // 新しい掛け金が帰ってくる
 	// 新しい掛け金を適応
 	$poker->setNowCoin($nowCoin);
-
+	$smarty->assign("player_bet",true);
 }
 
 else if($mode == "オールイン")
@@ -232,6 +235,23 @@ for($i = 1; $i <= (MAX_PLAYER - 1); $i++)
 	}
 }
 
+// これがMAX_PLAYERと同じになれば全員同じ
+$check = 0;
+// 全員の掛け金が同じならばフィールドにカードを追加する
+for($i = 0; $i < MAX_PLAYER; $i++)
+{
+	if($nowCoin == $statusList[$i]->getNowCoin())
+	{
+		$check += 1;
+	}
+}
+
+if($check == MAX_PLAYER)
+{
+	$fieldCard = array_pop($trump);
+	$turn += 1;
+	var_dump($fieldCard);
+}
 
 
 
@@ -246,8 +266,7 @@ $playerHand = array
 );
 
 $smarty->assign("player_card",$playerHand);
-$smarty->assign("player_init",true);
-$smarty->assign("coin",$nowCoin);
+$smarty->assign("now_coin",$nowCoin);
 
 $now_coin = array
 (
@@ -271,12 +290,13 @@ $now_coin = array
 		
 );
 
-$smarty->assign("now_coin",$now_coin);
+$smarty->assign("coins",$now_coin);
 
 $poker->setTrump($trump);
 $poker->setHand($handList);
 $poker->setComAI($comAI);
 $poker->setStatus($statusList);
+$poker->setGameTurn($turn);
 $poker->setNowCoin(LATCH);
 
 // セッションに保存したゲーム情報を入れる

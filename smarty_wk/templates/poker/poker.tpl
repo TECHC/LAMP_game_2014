@@ -96,8 +96,8 @@ function endCheck()
 <!-- ゲームの状態を表示 -->
 <div class="">
 	<!-- {$coin}には0 ~ 999の文字 -->
-	<div class="">現在の掛け金 : {$coin}</div>
-	{foreach from=$now_coin item=i}
+	<div class="">現在の掛け金 : {$now_coin}</div>
+	{foreach from=$coins item=i}
 		<div class="">{$i.name}さんの持ち金 : {$i.coin}</div>
 	{/foreach}
 </div>
