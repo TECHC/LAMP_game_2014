@@ -167,7 +167,7 @@ class Status
 	public function bet($addCoin)
 	{
 		// コインが足りているか
-		if($addCoin < $this->coin)
+		if($addCoin <= $this->coin)
 		{
 			// 足りていたら減らす
 			$this->coin -= $addCoin;
